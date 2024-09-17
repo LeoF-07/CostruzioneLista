@@ -8,92 +8,123 @@ public class Lista {
     private Nodo s;
 
     public Lista(){
-        head = new Nodo();
+        head = null;
     }
 
     public void push(Invitato invitato){
-        Nodo newNodo = new Nodo(invitato, head.getLink());
-        head.setLink(newNodo);
+        Invitato invitatoClonato;
+        try {
+            invitatoClonato = (Invitato) invitato.clone();
+        } catch (CloneNotSupportedException ex) {
+            System.out.println("Errore");
+            return;
+        }
+        Nodo newNodo = new Nodo(invitatoClonato, head);
+        head = newNodo;
     }
 
     public void addLast(Invitato invitato){
-        tmp = new Nodo();
-        Nodo nodo = head.getLink();
+        tmp = head;
 
-        while(nodo != null){
-            tmp = nodo;
-            nodo = nodo.getLink();
+        while(tmp.getLink() != null){
+            tmp = tmp.getLink();
         }
-
-        Nodo newNodo = new Nodo(invitato, tmp.getLink());
+        
+        Invitato invitatoClonato;
+        try {
+            invitatoClonato = (Invitato) invitato.clone();
+        } catch (CloneNotSupportedException ex) {
+            System.out.println("Errore");
+            return;
+        }
+        Nodo newNodo = new Nodo(invitatoClonato, null);
         tmp.setLink(newNodo);
     }
-
+    
     public void add(Invitato invitato, int posizione){
-        p = new Nodo();
-        s = new Nodo();
-        Nodo nodo = head.getLink();
+        p = head;
+        s = head;
 
         for(int i = 0; i < posizione - 1; i++){
-            if(nodo.getLink() == null) {
+            if(s.getLink() == null) {
                 System.out.println("Inserimento fallito");
                 return;
             }
 
-            p = nodo;
-            s = nodo.getLink();
-            nodo = nodo.getLink();
+            p = s;
+            s = s.getLink();
         }
 
-        Nodo newNodo = new Nodo(invitato, s);
+        Invitato invitatoClonato;
+        try {
+            invitatoClonato = (Invitato) invitato.clone();
+        } catch (CloneNotSupportedException ex) {
+            System.out.println("Errore");
+            return;
+        }
+        Nodo newNodo = new Nodo(invitatoClonato, s);
         p.setLink(newNodo);
     }
 
     public Invitato pop(){
-        if(head.getLink() == null){
+        if(head == null){
             System.out.println("La lista è vuota");
             return null;
         }
-        Nodo nodoDaRimuovere = head.getLink();
-        head.setLink(nodoDaRimuovere.getLink());
+        Nodo nodoDaRimuovere = head;
+        head = nodoDaRimuovere.getLink();
         return nodoDaRimuovere.getInvitato();
     }
 
     public Invitato removeLast(){
-        tmp = new Nodo();
-        Nodo nodo = head.getLink();
+        if(count() == 1) return pop();
+        p = head;
+        s = head;
 
-        while(nodo.getLink() != null){
-            tmp = nodo;
-            nodo = nodo.getLink();
+        while(s.getLink() != null){
+            p = s;
+            s = s.getLink();
         }
 
-        Nodo nodoDaRimuovere = tmp.getLink();
-        tmp.setLink(null);
+        Nodo nodoDaRimuovere = s;
+        p.setLink(null);
         return nodoDaRimuovere.getInvitato();
     }
 
     public Invitato remove(int posizione){
-        tmp = new Nodo();
-        p = new Nodo();
-        s = new Nodo();
-        Nodo nodo = head.getLink();
+        if(posizione == 1) return pop();
+        if(posizione == count()) return removeLast();
+        
+        tmp = head;
+        p = head;
+        s = head;
 
-        for(int i = 0; i < posizione - 1; i++){
-            if(nodo.getLink() == null) {
+        for(int i = 0; i < posizione; i++){
+            if(s == null) {
                 System.out.println("Rimozione fallita");
                 return null;
             }
 
-            p = nodo;
-            tmp = nodo.getLink();
-            s = tmp.getLink();
-            nodo = nodo.getLink();
+            p = tmp;
+            tmp = s;
+            s = s.getLink();
         }
 
         Nodo nodoDaRimuovere = tmp;
         p.setLink(s);
         return nodoDaRimuovere.getInvitato();
+    }
+    
+    public int count(){
+        int numeroElementi = 0;
+        Nodo nodo = head;
+        
+        while(nodo != null) {
+            nodo = nodo.getLink();
+            numeroElementi++;
+        }
+        
+        return numeroElementi;
     }
 
     public Nodo getHead() {
@@ -107,8 +138,7 @@ public class Lista {
     @Override
     public String toString() {
         String s = "Lista:";
-
-        Nodo nodo = head.getLink();
+        Nodo nodo = head;
         for (int i = 0; nodo != null; i++){
             Invitato invitato = nodo.getInvitato();
             s += "\n\n" + (i + 1) + ") " + invitato.toString();

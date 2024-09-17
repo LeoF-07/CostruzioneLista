@@ -1,6 +1,6 @@
 package costruzione_lista;
 
-public class Invitato {
+public class Invitato implements Cloneable {
 
     private String nome;
     private String cognome;
@@ -24,6 +24,11 @@ public class Invitato {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override
