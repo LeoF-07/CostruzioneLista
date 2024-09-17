@@ -17,7 +17,7 @@ public class TesterCostruzioneLista {
         lista.addLast(michele);
         lista.addLast(mattia);
 
-        lista.add(antonio, 2);
+        lista.add(antonio, 3);
 
         lista.pop();
         lista.removeLast();

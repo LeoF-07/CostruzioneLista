@@ -42,6 +42,11 @@ public class Lista {
     }
     
     public void add(Invitato invitato, int posizione){
+        if(posizione == 1) {
+            push(invitato);
+            return;
+        }
+        
         p = head;
         s = head;
 
