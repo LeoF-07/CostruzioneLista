@@ -11,7 +11,7 @@ public class Lista {
         head = null;
     }
 
-    public void push(Invitato invitato){
+    public void inserimentoInTesta(Invitato invitato){
         Invitato invitatoClonato;
         try {
             invitatoClonato = (Invitato) invitato.clone();
@@ -23,7 +23,7 @@ public class Lista {
         head = newNodo;
     }
 
-    public void addLast(Invitato invitato){
+    public void inserimentoInCoda(Invitato invitato){
         tmp = head;
 
         while(tmp.getLink() != null){
@@ -43,19 +43,21 @@ public class Lista {
     
     public void add(Invitato invitato, int posizione){
         if(posizione == 1) {
-            push(invitato);
+            inserimentoInTesta(invitato);
+            return;
+        }
+        
+        if(posizione > count()){
+            inserimentoInCoda(invitato);
             return;
         }
         
         p = head;
-        s = head;
+        s = head.getLink();
 
-        for(int i = 0; i < posizione - 1; i++){ // potrei fare anche qua un while
-            if(s.getLink() == null) {
-                System.out.println("Inserimento fallito");
-                return;
-            }
-
+        while(posizione - 2 > 0){ // presuppongo che le posizioni partano da 1
+            posizione--;
+            
             p = s;
             s = s.getLink();
         }
@@ -67,22 +69,37 @@ public class Lista {
             System.out.println("Errore");
             return;
         }
+        
         Nodo newNodo = new Nodo(invitatoClonato, s);
         p.setLink(newNodo);
     }
 
-    public Invitato pop(){
-        if(head == null){
+    public Invitato rimozioneInTesta(){
+        if(head == null){ // oppure count() == 0
             System.out.println("La lista è vuota");
             return null;
         }
+        
         Nodo nodoDaRimuovere = head;
         head = nodoDaRimuovere.getLink();
         return nodoDaRimuovere.getInvitato();
     }
 
     public Invitato removeLast(){
-        if(count() == 1) return pop();
+        if(count() == 1) return rimozioneInTesta();
+        
+        
+        /*Oppure:
+        
+        if(count() == 1){
+            Nodo nodoDaRimuovere = head;
+            head = null;
+            return nodoDaRimuovere; // cambia anche nodoDaRimuovere se metto head = null? Non so ma sto attento
+        }
+        
+        */
+        
+        
         p = head;
         s = head;
 
@@ -97,13 +114,13 @@ public class Lista {
     }
 
     public Invitato remove(int posizione){
-        if(posizione == 1) return pop();
+        if(posizione == 1) return rimozioneInTesta();
         if(posizione == count()) return removeLast();
 
         p = head;
         s = head.getLink().getLink();
 
-        while(posizione - 2 > 0){ // faccio -2 peché le posizioni iniziando da 0 e in più la prima incrementazione lho gia fatta, se faccio la stessa cosa sul metodo add anche li dovrei mettere -2
+        while(posizione - 2 > 0){ // presuppongo che le posizioni partano da 1
             posizione--;
             
             if(s == null) {

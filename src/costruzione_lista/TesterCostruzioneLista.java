@@ -11,11 +11,12 @@ public class TesterCostruzioneLista {
         Invitato antonio = new Invitato("Antonio", "F");
         Invitato mattia = new Invitato("Mattia", "G");
 
-        lista.push(leo);
-        lista.push(guido);
+        lista.inserimentoInTesta(leo);
+        lista.inserimentoInTesta(guido);
 
-        lista.addLast(michele);
-        lista.push(antonio);
+        lista.inserimentoInCoda(michele);
+        lista.inserimentoInTesta(antonio);
+        lista.add(mattia, 4);
         /*lista.addLast(mattia);
 
         lista.add(antonio, 3);
@@ -24,7 +25,7 @@ public class TesterCostruzioneLista {
         lista.removeLast();
         lista.remove(2);*/
         
-        lista.remove(3);
+        //lista.remove(5);
 
         System.out.println(lista.toString());
     }
