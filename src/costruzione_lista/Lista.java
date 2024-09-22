@@ -37,8 +37,8 @@ public class Lista {
             System.out.println("Errore");
             return;
         }
-        Nodo newNodo = new Nodo(invitatoClonato, null);
-        tmp.setLink(newNodo);
+        Nodo nuovoNodo = new Nodo(invitatoClonato, null);
+        tmp.setLink(nuovoNodo);
     }
     
     public void add(Invitato invitato, int posizione){
@@ -50,7 +50,7 @@ public class Lista {
         p = head;
         s = head;
 
-        for(int i = 0; i < posizione - 1; i++){
+        for(int i = 0; i < posizione - 1; i++){ // potrei fare anche qua un while
             if(s.getLink() == null) {
                 System.out.println("Inserimento fallito");
                 return;
@@ -99,23 +99,23 @@ public class Lista {
     public Invitato remove(int posizione){
         if(posizione == 1) return pop();
         if(posizione == count()) return removeLast();
-        
-        tmp = head;
-        p = head;
-        s = head;
 
-        for(int i = 0; i < posizione; i++){
+        p = head;
+        s = head.getLink().getLink();
+
+        while(posizione - 2 > 0){ // faccio -2 peché le posizioni iniziando da 0 e in più la prima incrementazione lho gia fatta, se faccio la stessa cosa sul metodo add anche li dovrei mettere -2
+            posizione--;
+            
             if(s == null) {
                 System.out.println("Rimozione fallita");
                 return null;
             }
 
-            p = tmp;
-            tmp = s;
+            p = p.getLink();
             s = s.getLink();
         }
 
-        Nodo nodoDaRimuovere = tmp;
+        Nodo nodoDaRimuovere = p.getLink();
         p.setLink(s);
         return nodoDaRimuovere.getInvitato();
     }

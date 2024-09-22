@@ -15,13 +15,16 @@ public class TesterCostruzioneLista {
         lista.push(guido);
 
         lista.addLast(michele);
-        lista.addLast(mattia);
+        lista.push(antonio);
+        /*lista.addLast(mattia);
 
         lista.add(antonio, 3);
 
         lista.pop();
         lista.removeLast();
-        lista.remove(2);
+        lista.remove(2);*/
+        
+        lista.remove(3);
 
         System.out.println(lista.toString());
     }
