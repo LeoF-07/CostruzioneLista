@@ -31,4 +31,8 @@ public class Nodo {
         this.link = link;
     }
 
+    @Override
+    public String toString() {
+        return invitato.toString();
+    }
 }

@@ -85,7 +85,7 @@ public class Lista {
         return nodoDaRimuovere.getInvitato();
     }
 
-    public Invitato removeLast(){
+    public Invitato rimozioneInCoda(){
         if(count() == 1) return rimozioneInTesta();
         
         
@@ -94,7 +94,7 @@ public class Lista {
         if(count() == 1){
             Nodo nodoDaRimuovere = head;
             head = null;
-            return nodoDaRimuovere; // cambia anche nodoDaRimuovere se metto head = null? Non so ma sto attento
+            return nodoDaRimuovere.getInvitato();
         }
         
         */
@@ -115,7 +115,7 @@ public class Lista {
 
     public Invitato remove(int posizione){
         if(posizione == 1) return rimozioneInTesta();
-        if(posizione == count()) return removeLast();
+        if(posizione == count()) return rimozioneInCoda();
 
         p = head;
         s = head.getLink().getLink();
@@ -162,8 +162,7 @@ public class Lista {
         String s = "Lista:";
         Nodo nodo = head;
         for (int i = 0; nodo != null; i++){
-            Invitato invitato = nodo.getInvitato();
-            s += "\n\n" + (i + 1) + ") " + invitato.toString();
+            s += "\n\n" + (i + 1) + ") " + nodo.toString();
             nodo = nodo.getLink();
         }
 

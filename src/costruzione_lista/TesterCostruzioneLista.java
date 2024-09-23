@@ -17,12 +17,13 @@ public class TesterCostruzioneLista {
         lista.inserimentoInCoda(michele);
         lista.inserimentoInTesta(antonio);
         lista.add(mattia, 4);
-        /*lista.addLast(mattia);
+
+        /*lista.inserimentoInTesta(mattia);
 
         lista.add(antonio, 3);
 
-        lista.pop();
-        lista.removeLast();
+        lista.rimozioneInTesta();
+        lista.rimozioneInCoda();
         lista.remove(2);*/
         
         //lista.remove(5);
