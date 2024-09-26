@@ -10,7 +10,9 @@ public enum Opzione {
 
     RIMOZIONE_IN_TESTA(4, "Rimuovi elemento in testa"),
     RIMOZIONE_IN_CODA(5, "Rimuovi elemento in coda"),
-    RIMOZIONE_IN_UNA_POSIZIONE(6, "Rimuovi elemento in una posizione");
+    RIMOZIONE_IN_UNA_POSIZIONE(6, "Rimuovi elemento in una posizione"),
+
+    STAMPA_LISTA(7, "Stampa il contenuto della lista");
 
     int numeroOpzione;
     String descrizione;

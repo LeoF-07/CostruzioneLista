@@ -51,6 +51,11 @@ public class Lista {
             inserimentoInCoda(invitato);
             return;
         }
+
+        if(posizione < 1){
+            System.out.println("Inserimento fallito (posizione < 1)");
+            return;
+        }
         
         p = head;
         s = head.getLink();
@@ -160,6 +165,12 @@ public class Lista {
     @Override
     public String toString() {
         String s = "Lista:";
+
+        if(head == null){
+            s += "\nVuota";
+            return s;
+        }
+
         Nodo nodo = head;
         for (int i = 0; nodo != null; i++){
             s += "\n\n" + (i + 1) + ") " + nodo.toString();

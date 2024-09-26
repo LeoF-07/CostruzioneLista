@@ -4,10 +4,16 @@ import java.util.Scanner;
 
 public class TesterCostruzioneLista {
 
-    public static void main(String[] args) {
-        Lista lista = new Lista();
+    static Lista lista;
 
-        Invitato leo = new Invitato("Leo", "F");
+    public static void inizializzazioneVariabili(){
+        lista = new Lista();
+    }
+
+    public static void main(String[] args) {
+        //Lista lista = new Lista();
+
+        /*Invitato leo = new Invitato("Leo", "F");
         Invitato guido = new Invitato("Guido", "M");
         Invitato michele = new Invitato("Michele", "B");
         Invitato antonio = new Invitato("Antonio", "F");
@@ -30,20 +36,20 @@ public class TesterCostruzioneLista {
         
         lista.remove(5);
 
-        System.out.println(lista.toString());
+        System.out.println(lista.toString());*/
 
 
-
-        /*descrizione();
+        descrizione();
+        inizializzazioneVariabili();
 
         int scelta;
         do{
             stampaMenu();
             scelta = chiediIntero("Fai una scelta: ");
             esegui(scelta);
-        }while(scelta != 0);
+        }while(scelta != Opzione.EXIT.numeroOpzione);
 
-        System.out.println("Programma terminato");*/
+        System.out.println("Programma terminato");
     }
 
     public static void descrizione(){
@@ -58,21 +64,53 @@ public class TesterCostruzioneLista {
             return;
         }
 
+
+
+        Invitato invitato;
+        int posizione;
+
+
         switch (opzione){
+
             case EXIT:
                 break;
+
             case INSERIMENTO_IN_TESTA:
+                invitato = creaInvitato();
+                lista.inserimentoInTesta(invitato);
                 break;
+
             case INSERIMENTO_IN_CODA:
+                invitato = creaInvitato();
+                lista.inserimentoInCoda(invitato);
                 break;
+
             case INSERIMENTO_IN_UNA_POSIZIONE:
+                invitato = creaInvitato();
+                posizione = chiediIntero("Inserisci la posizione: ");
+                lista.add(invitato, posizione);
                 break;
+
             case RIMOZIONE_IN_TESTA:
+                invitato = lista.rimozioneInTesta();
+                System.out.println("Invitato rimosso:\n" + invitato.toString());
                 break;
+
             case RIMOZIONE_IN_CODA:
+                invitato = lista.rimozioneInCoda();
+                System.out.println("Invitato rimosso:\n" + invitato.toString());
                 break;
+
             case RIMOZIONE_IN_UNA_POSIZIONE:
+                posizione = chiediIntero("Inserisci la posizione: ");
+                invitato = lista.remove(posizione);
+                System.out.println("Invitato rimosso:\n" + invitato.toString());
                 break;
+
+            case STAMPA_LISTA:
+                System.out.println(lista.toString());
+                break;
+                
         }
     }
 
@@ -82,10 +120,25 @@ public class TesterCostruzioneLista {
         }
     }
 
+    public static Invitato creaInvitato(){
+        System.out.println("Creazione invitato:\n");
+
+        String nome = chiediStringa("Inserisci il nome: ");
+        String cognome = chiediStringa("Inserisci il cognome: ");
+
+        return new Invitato(nome, cognome);
+    }
+
     public static int chiediIntero(String messaggio){
         Scanner kbd = new Scanner(System.in);
         System.out.print(messaggio);
         return kbd.nextInt();
+    }
+
+    public static String chiediStringa(String messaggio){
+        Scanner kbd = new Scanner(System.in);
+        System.out.print(messaggio);
+        return kbd.next();
     }
 
 }
