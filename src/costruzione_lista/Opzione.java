@@ -12,7 +12,9 @@ public enum Opzione {
     RIMOZIONE_IN_CODA(5, "Rimuovi elemento in coda"),
     RIMOZIONE_IN_UNA_POSIZIONE(6, "Rimuovi elemento in una posizione"),
 
-    STAMPA_LISTA(7, "Stampa il contenuto della lista");
+    STAMPA_LISTA(7, "Stampa il contenuto della lista"),
+
+    POPOLA(8, "Popola la lista con gli elementi default");
 
     int numeroOpzione;
     String descrizione;

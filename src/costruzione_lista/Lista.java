@@ -141,6 +141,21 @@ public class Lista {
         p.setLink(s);
         return nodoDaRimuovere.getInvitato();
     }
+
+    public void popola(){
+        Invitato leo = new Invitato("Leo", "F");
+        Invitato guido = new Invitato("Guido", "M");
+        Invitato michele = new Invitato("Michele", "B");
+        Invitato antonio = new Invitato("Antonio", "F");
+        Invitato mattia = new Invitato("Mattia", "G");
+
+        inserimentoInTesta(leo);
+        inserimentoInTesta(guido);
+
+        inserimentoInCoda(michele);
+        inserimentoInTesta(antonio);
+        add(mattia, 4);
+    }
     
     public int count(){
         int numeroElementi = 0;
@@ -171,9 +186,11 @@ public class Lista {
             return s;
         }
 
+        s += "\n\n";
+
         Nodo nodo = head;
         for (int i = 0; nodo != null; i++){
-            s += "\n\n" + (i + 1) + ") " + nodo.toString();
+            s += "\n" + (i + 1) + ") " + nodo.toString() + "\n";
             nodo = nodo.getLink();
         }
 

@@ -33,6 +33,6 @@ public class Invitato implements Cloneable {
 
     @Override
     public String toString() {
-        return "Invitato:\n" + "Nome: " + getNome() + "\nCognome: " + getCognome();
+        return "Invitato: " + "Nome: " + getNome() + ",Cognome: " + getCognome();
     }
 }
